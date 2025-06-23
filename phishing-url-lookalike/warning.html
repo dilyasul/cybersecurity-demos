@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security Alert - Suspicious URL</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="icon"
+    href="https://www.svgrepo.com/show/33140/search.svg"
+  />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-magnifying-glass"></i> Googgle
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Help</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="warning-container">
+      <div class="icon">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h1>Security Alert: Suspicious URL Detected</h1>
+      <p>
+        The website address you attempted to visit (<strong>https://www.googgle.com</strong>)<br />
+        closely resembles a trusted site, but is <em>not</em> the official domain.<br />
+        This is a common URL fishing (typosquatting) technique used to trick users into sharing sensitive information.
+      </p>
+
+      <div class="url-comparison">
+        <div class="url real-url">
+          <strong>Official Site:</strong> https://www.google.com
+        </div>
+        <div class="url fake-url">
+          <strong>Suspicious Site:</strong> https://www.googgle.com
+        </div>
+      </div>
+
+      <h2>Tips to Protect Yourself:</h2>
+      <ul>
+        <li>Always check the URL carefully for misspellings or extra characters.</li>
+        <li>Look for HTTPS and a valid security certificate.</li>
+        <li>Bookmark important sites instead of clicking unfamiliar links.</li>
+        <li>Be cautious of urgent or threatening messages requesting your login info.</li>
+      </ul>
+
+      <a href="index.html" class="btn-return">Return to Login</a>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="socials">
+      <a href="#" title="Facebook" aria-label="Facebook"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+      <a href="#" title="Twitter" aria-label="Twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+      <a href="#" title="LinkedIn" aria-label="LinkedIn"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+      <a href="#" title="GitHub" aria-label="GitHub"
+        ><i class="fab fa-github"></i
+      ></a>
+    </div>
+    <div>Made with ❤️ by PhishAware</div>
+  </footer>
+</body>
+</html>
