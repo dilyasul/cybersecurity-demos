@@ -2,14 +2,14 @@
 
 This repository contains interactive, educational demos of common cybersecurity threats.
 
-## 📂 Projects
+## Projects
 
 - **Phishing: URL Lookalike Attack**  
   `phishing-url-lookalike/` — Simulates a fake login page using a spoofed domain to demonstrate how users can be tricked by typo-squatting.
 
 *(More coming soon...)*
 
-## 🔒 Purpose
+## Purpose
 
 To raise awareness through simple web-based demos and help users understand how cyber threats work in practice.
 
