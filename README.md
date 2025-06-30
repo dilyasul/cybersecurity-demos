@@ -1,27 +1,69 @@
 # Cybersecurity Demos
-This repository contains interactive, educational demos of common cybersecurity threats.
 
-## Purpose
-To raise awareness through simple web-based demos and help users understand how cyber threats work in practice.
+This repository showcases **interactive, educational web demos** of common cybersecurity threats. Each project is designed to simulate real-world attack techniques in a safe, sandboxed environment.
 
-## Projects
-- **Phishing: URL Lookalike Attack**  
-  `phishing-url-lookalike/` — Simulates a fake login page using a spoofed domain to demonstrate how users can be tricked by typo-squatting.
+---
 
-- **Credential Stuffing**
-`credential_stuffing/` — Simulates a fake login page that has strict security measures for passwords (length, special characters, etc).
-  **!!** When running simulation, passwords such as "123456", "password", "qwerty123", etc. will automatically prompt a pop-up of shame, warning users to not use such passwords.
+##  Purpose
 
-- **XSS Playground**
-  `xss-playground/` — Demonstrates how Cross-Site Scripting vulnerabilities work in a controlled sandbox. Users can input text into a comment box and toggle between **Vulnerable**, **Safe**, and **DOMPurify** modes to see how unsanitized input can lead to malicious script execution.
+To raise awareness about cyber threats by showing **how they work in practice** — not just in theory. These hands-on demos are ideal for:
 
-  **!!** In Vulnerable Mode, inputs like `<script>alert("XSS")</script>` will trigger a real alert. DOMPurify Mode safely sanitizes the input using a real-world XSS defense library. The demo includes a live raw HTML preview, preloaded payload buttons, and an educational explanation panel to help users understand the impact and mitigation of XSS attacks.
-  
-  
-  
+- Students learning cybersecurity
+- Developers understanding application-layer threats
+- Anyone curious about digital security
 
+---
 
+##  Projects Included
 
+###  Phishing: URL Lookalike Attack  
+ `phishing-url-lookalike/`
+
+Simulates a fake login page that uses a **spoofed domain name** (typosquatting) to deceive users.  
+- Highlights how attackers register lookalike URLs to trick users into entering credentials.
+- Demonstrates common UI patterns attackers mimic (e.g., Google login pages).
+- Encourages critical thinking about domain names and padlock trust.
+
+---
+
+###  Credential Stuffing  
+ `credential_stuffing/`
+
+Simulates a login form with **strict password validation** to raise awareness about password reuse and weak credentials.
+
+- Detects common bad passwords like `"123456"`, `"password"`, and `"qwerty123"`.
+- Triggers warning modals when insecure credentials are entered.
+- Demonstrates how attackers automate login attempts using leaked username/password combos.
+
+ **Note:** No real authentication occurs. This is a visual-only simulation.
+
+---
+
+###  Cross-Site Scripting (XSS) Playground  
+ `xss-playground/`
+
+A sandboxed environment to test and understand **XSS vulnerabilities** with selectable protection levels.
+
+- Users can input text and toggle between:
+  -  **Vulnerable Mode** — accepts all input, including raw `<script>` tags
+  -  **Safe Mode** — blocks dangerous input
+  -  **DOMPurify Mode** — sanitizes input using the open-source [DOMPurify](https://github.com/cure53/DOMPurify) library
+- Includes:
+  - Live raw HTML rendering
+  - Example payload buttons
+  - XSS alert counter
+  - Educational guidance panel
+
+This demo teaches the impact of client-side injection and how libraries like DOMPurify can help mitigate risk.
+
+---
+
+##  How to Use
+
+Each folder is self-contained and includes an `index.html` you can open directly or serve via a lightweight HTTP server like:
+
+```bash
+npx http-server -p 5500
 
 
 
