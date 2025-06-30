@@ -6,54 +6,59 @@
   <title>XSS Playground</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
-<script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
-
 <body>
-
   <div class="container">
     <h1>XSS Playground Demo</h1>
-    <p>Try entering text below. You can even try something like:</p>
-    <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code>
+    <p>Try entering text below, or test one of the preloaded payloads:</p>
 
     <div class="examples">
-  <h3>Try Preloaded Payloads:</h3>
-  <button type="button" onclick="insertExample('<script>alert(\\'XSS\\')</script>')">
-    &lt;script&gt;alert()
-  </button>
-  <button type="button" onclick="insertExample('<img src=x onerror=alert(\\'Oops\\')>')">
-    Image onerror
-  </button>
-  <button type="button" onclick="insertExample('<a href=javascript:alert(\\'Link\\')>Click me</a>')">
-    JavaScript Link
-  </button>
+  <h3> Preloaded Attack Examples</h3>
+
+  <div class="example-button">
+    <button class="payload-btn" data-payload="&lt;script&gt;alert('This is an XSS attack!')&lt;/script&gt;">
+      Alert Popup
+    </button>
+    <p>Simulates a basic XSS attack that creates a JavaScript alert popup.</p>
+  </div>
+
+  <div class="example-button">
+    <button class="payload-btn" data-payload="&lt;img src=x onerror=alert('Image XSS')&gt;">
+      Image Load Error
+    </button>
+    <p>Uses an image with an error handler to trigger a script when loading fails.</p>
+  </div>
+
+  <div class="example-button">
+    <button class="payload-btn" data-payload="&lt;a href='javascript:alert(&quot;Clicked!&quot;)'&gt;Click me&lt;/a&gt;">
+      JavaScript Link
+    </button>
+    <p>Creates a clickable link that executes JavaScript instead of going to a website.</p>
+  </div>
 </div>
+
+
 
     <form id="commentForm">
       <textarea id="commentInput" placeholder="Enter your comment here..." required></textarea>
-
-<div id="explanationBox" class="explanation">
-  <h3>What Just Happened?</h3>
-  <div id="explanationText">Submit a comment to see the effect and explanation here.</div>
-</div>
-
-
-
-<div class="mode">
-  <label><input type="radio" name="mode" value="vulnerable" checked /> Vulnerable Mode</label>
-  <label><input type="radio" name="mode" value="safe" /> Safe Mode</label>
-  <label><input type="radio" name="mode" value="purify" /> Sanitize with DOMPurify</label>
-</div>
-
-      
+      <div class="mode">
+        <label><input type="radio" name="mode" value="vulnerable" checked /> Vulnerable Mode</label>
+        <label><input type="radio" name="mode" value="safe" /> Safe Mode</label>
+        <label><input type="radio" name="mode" value="purify" /> Sanitize with DOMPurify</label>
+      </div>
       <button type="submit">Submit Comment</button>
     </form>
 
     <h2>Comments:</h2>
     <div id="commentSection"></div>
+
+    <div id="explanationBox" class="explanation">
+      <h3>What Just Happened?</h3>
+      <div id="explanationText">Submit a comment to see the effect and explanation here.</div>
+    </div>
   </div>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
   <script src="script.js"></script>
 </body>
-
 </html>

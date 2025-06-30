@@ -1,6 +1,7 @@
 const form = document.getElementById("commentForm");
 const commentInput = document.getElementById("commentInput");
 const commentSection = document.getElementById("commentSection");
+const explanationBox = document.getElementById("explanationText");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -20,7 +21,7 @@ form.addEventListener("submit", (e) => {
     rawHTML = comment;
   } else if (mode === "safe") {
     rendered = escapeHTML(comment);
-    rawHTML = escapeHTML(comment);
+    rawHTML = rendered;
   } else if (mode === "purify") {
     rendered = DOMPurify.sanitize(comment);
     rawHTML = rendered;
@@ -38,36 +39,52 @@ form.addEventListener("submit", (e) => {
     </details>
   `;
 
-  const explanationBox = document.getElementById("explanationText");
-let explanation = "";
-
-if (mode === "vulnerable") {
-  if (/<script|onerror|javascript:/i.test(comment)) {
-    explanation = "Vulnerable Mode: Your input included potentially dangerous content and was rendered without filtering, so scripts can execute!";
-  } else {
-    explanation = "Vulnerable Mode: Your comment was rendered directly, but did not contain dangerous tags.";
-  }
-} else if (mode === "safe") {
-  explanation = "Safe Mode: Your input was escaped, so even if it included scripts or HTML, they were displayed as plain text.";
-} else if (mode === "purify") {
-  explanation = "DOMPurify Mode: The input was sanitized using a real-world library that strips malicious code safely.";
-}
-
-explanationBox.textContent = explanation;
-
-
   commentSection.appendChild(wrapper);
   commentInput.value = "";
+
+  // Explanation logic
+  let explanation = "";
+
+  if (mode === "vulnerable") {
+    if (/<script|onerror|javascript:/i.test(comment)) {
+      explanation = "Vulnerable Mode: Dangerous code was rendered without filtering - JavaScript could execute!";
+    } else {
+      explanation = "Vulnerable Mode: No active script, but rendering is unsafe.";
+    }
+  } else if (mode === "safe") {
+    explanation = "Safe Mode: HTML was escaped - no code will execute.";
+  } else if (mode === "purify") {
+    explanation = "DOMPurify Mode: Code was cleaned using DOMPurify to strip malicious content.";
+  }
+
+  explanationBox.textContent = explanation;
 });
 
 function escapeHTML(str) {
-  return str.replace(/[&<>"']/g, function (m) {
-    return ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#039;'
-    })[m];
-  });
+  return str.replace(/[&<>"']/g, (m) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  }[m]));
 }
+
+function insertExample(payload) {
+  const input = document.getElementById("commentInput");
+  input.value = decodeHTMLEntities(payload);
+}
+
+function decodeHTMLEntities(str) {
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = str;
+  return textarea.value;
+}
+
+document.querySelectorAll('.payload-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const encoded = btn.getAttribute('data-payload');
+    const decoded = decodeHTMLEntities(encoded);
+    document.getElementById("commentInput").value = decoded;
+  });
+});

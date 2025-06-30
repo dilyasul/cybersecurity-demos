@@ -128,3 +128,38 @@ pre {
   margin-top: 0.5rem;
 }
 
+.example-button {
+  margin-bottom: 1rem;
+}
+
+.example-button p {
+  margin: 0.2rem 0 0.8rem 0;
+  font-size: 0.9rem;
+  color: #c5c6c7;
+}
+
+.example-button {
+  margin-bottom: 1.5rem;
+}
+
+.payload-btn {
+  padding: 0.5rem 0.8rem;
+  background: #1f2833;
+  border: 1px solid #66fcf1;
+  color: #66fcf1;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.payload-btn:hover {
+  background: #66fcf1;
+  color: #0b0c10;
+}
+
+.example-button p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0 0;
+  color: #c5c6c7;
+}
+
