@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XSS Playground</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
+
+<body>
+
+  <div class="container">
+    <h1>XSS Playground Demo</h1>
+    <p>Try entering text below. You can even try something like:</p>
+    <code>&lt;script&gt;alert("XSS")&lt;/script&gt;</code>
+
+    <div class="examples">
+  <h3>Try Preloaded Payloads:</h3>
+  <button type="button" onclick="insertExample('<script>alert(\\'XSS\\')</script>')">
+    &lt;script&gt;alert()
+  </button>
+  <button type="button" onclick="insertExample('<img src=x onerror=alert(\\'Oops\\')>')">
+    Image onerror
+  </button>
+  <button type="button" onclick="insertExample('<a href=javascript:alert(\\'Link\\')>Click me</a>')">
+    JavaScript Link
+  </button>
+</div>
+
+    <form id="commentForm">
+      <textarea id="commentInput" placeholder="Enter your comment here..." required></textarea>
+
+<div id="explanationBox" class="explanation">
+  <h3>What Just Happened?</h3>
+  <div id="explanationText">Submit a comment to see the effect and explanation here.</div>
+</div>
+
+
+
+<div class="mode">
+  <label><input type="radio" name="mode" value="vulnerable" checked /> Vulnerable Mode</label>
+  <label><input type="radio" name="mode" value="safe" /> Safe Mode</label>
+  <label><input type="radio" name="mode" value="purify" /> Sanitize with DOMPurify</label>
+</div>
+
+      
+      <button type="submit">Submit Comment</button>
+    </form>
+
+    <h2>Comments:</h2>
+    <div id="commentSection"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
