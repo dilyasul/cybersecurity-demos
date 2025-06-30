@@ -11,30 +11,39 @@
     <h1>XSS Playground Demo</h1>
     <p>Try entering text below, or test one of the preloaded payloads:</p>
 
-    <div class="examples">
+ <div class="examples">
   <h3> Preloaded Attack Examples</h3>
 
   <div class="example-button">
     <button class="payload-btn" data-payload="&lt;script&gt;alert('This is an XSS attack!')&lt;/script&gt;">
       Alert Popup
     </button>
-    <p>Simulates a basic XSS attack that creates a JavaScript alert popup.</p>
+    <button class="copy-btn" data-payload="&lt;script&gt;alert('This is an XSS attack!')&lt;/script&gt;"> Copy</button>
+    <p>Simulates a basic XSS attack that shows a JavaScript alert.</p>
   </div>
 
   <div class="example-button">
     <button class="payload-btn" data-payload="&lt;img src=x onerror=alert('Image XSS')&gt;">
       Image Load Error
     </button>
-    <p>Uses an image with an error handler to trigger a script when loading fails.</p>
+    <button class="copy-btn" data-payload="&lt;img src=x onerror=alert('Image XSS')&gt;"> Copy</button>
+    <p>Uses a broken image to trigger a script via `onerror`.</p>
   </div>
 
   <div class="example-button">
     <button class="payload-btn" data-payload="&lt;a href='javascript:alert(&quot;Clicked!&quot;)'&gt;Click me&lt;/a&gt;">
       JavaScript Link
     </button>
-    <p>Creates a clickable link that executes JavaScript instead of going to a website.</p>
+    <button class="copy-btn" data-payload="&lt;a href='javascript:alert(&quot;Clicked!&quot;)'&gt;Click me&lt;/a&gt;"> Copy</button>
+    <p>A clickable link that runs JavaScript when clicked.</p>
+  </div>
+
+  <div class="example-controls">
+    <button id="resetBtn"> Reset</button>
+    <span id="triggerCounter">XSS Alerts Triggered: 0</span>
   </div>
 </div>
+
 
 
 

@@ -88,3 +88,42 @@ document.querySelectorAll('.payload-btn').forEach(btn => {
     document.getElementById("commentInput").value = decoded;
   });
 });
+
+// Copy payload to clipboard
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const encoded = btn.getAttribute('data-payload');
+    const decoded = decodeHTMLEntities(encoded);
+    navigator.clipboard.writeText(decoded).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+    });
+  });
+});
+
+// Reset button clears everything
+document.getElementById("resetBtn").addEventListener("click", () => {
+  document.getElementById("commentInput").value = "";
+  document.getElementById("commentSection").innerHTML = "";
+  document.getElementById("explanationText").textContent = "Submit a comment to see the effect and explanation here.";
+  document.getElementById("triggerCounter").textContent = "XSS Alerts Triggered: 0";
+  xssCount = 0;
+});
+
+// Trigger counter
+let xssCount = 0;
+
+function incrementXSSCount() {
+  xssCount++;
+  document.getElementById("triggerCounter").textContent = `XSS Alerts Triggered: ${xssCount}`;
+}
+
+// Modify existing logic inside your form listener:
+if (mode === "vulnerable") {
+  if (/<script|onerror|javascript:/i.test(comment)) {
+    explanation = " Vulnerable Mode: Dangerous code was rendered without filtering - JavaScript could execute!";
+    incrementXSSCount(); // add this line
+  } else {
+    explanation = "Vulnerable Mode: No active script, but rendering is unsafe.";
+  }
+}

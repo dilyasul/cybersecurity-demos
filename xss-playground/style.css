@@ -163,3 +163,44 @@ pre {
   color: #c5c6c7;
 }
 
+.copy-btn {
+  margin-left: 0.5rem;
+  background: #0b0c10;
+  color: #66fcf1;
+  border: 1px dashed #66fcf1;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: #66fcf1;
+  color: #0b0c10;
+}
+
+.example-controls {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#resetBtn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#resetBtn:hover {
+  background-color: #d32f2f;
+}
+
+#triggerCounter {
+  font-size: 0.95rem;
+  color: #66fcf1;
+}
+
